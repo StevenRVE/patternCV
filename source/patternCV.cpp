@@ -1,4 +1,4 @@
-#include "{{ file_name }}.hpp"
+#include "patternCV.hpp"
 
 START_NAMESPACE_DISTRHO
 
@@ -6,7 +6,7 @@ START_NAMESPACE_DISTRHO
       Plugin class constructor.
       You must set all parameter values to their defaults, matching the value in initParameter().
     */
-{{ class_name }}::{{ class_name }}()
+PatternCV::PatternCV()
     : Plugin(PARAM_COUNT, 0, 0) // parameters, programs, states
 {
     /**
@@ -24,7 +24,7 @@ START_NAMESPACE_DISTRHO
   Initialize the parameter @a index.
   This function will be called once, shortly after the plugin is created.
 */
-void {{ class_name }}::initParameter(uint32_t index, Parameter& parameter)
+void PatternCV::initParameter(uint32_t index, Parameter& parameter)
 {
     if (index >= PARAM_COUNT) { return; }
 
@@ -81,7 +81,7 @@ void {{ class_name }}::initParameter(uint32_t index, Parameter& parameter)
   Get the current value of a parameter.
   The host may call this function from any context, including realtime processing.
 */
-float {{ class_name }}::getParameterValue(uint32_t index) const
+float PatternCV::getParameterValue(uint32_t index) const
 {
     switch (index)
     {
@@ -99,7 +99,7 @@ float {{ class_name }}::getParameterValue(uint32_t index) const
   When a parameter is marked as automable, you must ensure no non-realtime
   operations are performed.
 */
-void {{ class_name }}::setParameterValue(uint32_t index, float value)
+void PatternCV::setParameterValue(uint32_t index, float value)
 {
     switch (index)
     {
@@ -119,12 +119,12 @@ void {{ class_name }}::setParameterValue(uint32_t index, float value)
 // -------------------------------------------------------------------
 // Process
 
-void {{ class_name }}::activate()
+void PatternCV::activate()
 {
     // plugin is activated
 }
 
-void {{ class_name }}::deactivate()
+void PatternCV::deactivate()
 {
     // plugin is deactivated
 }
@@ -132,7 +132,7 @@ void {{ class_name }}::deactivate()
 /**
   Run/process function for plugins with MIDI input.
 */
-void {{ class_name }}::run(const float**, float**, uint32_t nframes)
+void PatternCV::run(const float**, float**, uint32_t nframes)
 {
     // run
 }
@@ -144,7 +144,7 @@ void {{ class_name }}::run(const float**, float**, uint32_t nframes)
     Optional callback to inform the plugin about a sample rate change.
     This function will only be called when the plugin is deactivated.
 */
-void {{ class_name }}::sampleRateChanged(double newSampleRate)
+void PatternCV::sampleRateChanged(double newSampleRate)
 {
     (void)newSampleRate;
 }
@@ -153,7 +153,7 @@ void {{ class_name }}::sampleRateChanged(double newSampleRate)
 
 Plugin* createPlugin()
 {
-    return new {{ class_name }}();
+    return new PatternCV();
 }
 
 // -----------------------------------------------------------------------
