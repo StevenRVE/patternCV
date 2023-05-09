@@ -36,7 +36,7 @@ with open(os.path.join(OUTPUT_SOURCE, filename), 'w') as f:
 
 # render plugin.hpp
 template = env.get_template('plugin.hpp.template')
-plugin_hpp = template.render(plugin_name=plugin_name, plugin_uri=plugin_uri)
+plugin_hpp = template.render(class_name=class_name, plugin_uri=plugin_uri)
 
 # write plugin.hpp to file
 filename = f'{file_name}.hpp'
