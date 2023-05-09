@@ -30,7 +30,7 @@ public:
       Plugin class constructor.
       You must set all parameter values to their defaults, matching the value in initParameter().
     */
-    ();
+    PatternCV();
 
 protected:
     // -------------------------------------------------------------------
@@ -105,9 +105,9 @@ protected:
     // -------------------------------------------------------------------
     // Process
 
-    void activate();
+    void activate() override;
 
-    void deactivate();
+    void deactivate() override;
 
     /**
       Run/process function for plugins with MIDI input.
