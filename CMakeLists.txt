@@ -8,6 +8,8 @@ cmake_minimum_required(VERSION 3.7)
 
    FILES_DSP
        source/patternCV.cpp
+       source/patternGenerator.cpp
+       source/euclideanGenerator.cpp
  )
 
  target_include_directories(sve-patternCV

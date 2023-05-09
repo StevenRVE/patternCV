@@ -5,6 +5,7 @@
 #include "DistrhoPlugin.hpp"
 
 // classes
+#include "patternGenerator.hpp"
 
 // libs
 #include <cstdint>
@@ -22,7 +23,14 @@ class PatternCV : public Plugin
 {
 public:
     enum Parameters {
-        PARAM_GAIN,
+        PARAM_DELAYTIME,
+        PARAM_PATTERN_TYPE,
+        PARAM_RANDOM_CHANCE,
+        PARAM_EUC_STEPS,
+        PARAM_EUC_PULSE,
+        PARAM_EUC_ROTATION,
+        PARAM_NTH,
+        PARAM_NTH_ROTATION,
         PARAM_COUNT
     };
 
@@ -40,13 +48,13 @@ protected:
       Get the plugin label.
       This label is a short restricted name consisting of only _, a-z, A-Z and 0-9 characters.
     */
-    const char* getLabel() const noexcept override { return "Template Plugin"; }
+    const char* getLabel() const noexcept override { return "Pattern CV Plugin"; }
 
     /**
       Get an extensive comment/description about the plugin.
       Optional, returns nothing by default.
     */
-    const char* getDescription() const override { return "SvE template plugin."; }
+    const char* getDescription() const override { return "SvE Pattern CV Plugin."; }
 
     /**
       Get the plugin author/maker.
@@ -74,6 +82,12 @@ protected:
 
     // -------------------------------------------------------------------
     // Init
+
+    /**
+          Initialize the audio port @a index.@n
+          This function will be called once, shortly after the plugin is created.
+    */
+    void initAudioPort(bool input, uint32_t index, AudioPort& port) override;
 
     /**
       Initialize the parameter @ index.
@@ -124,13 +138,20 @@ protected:
     void sampleRateChanged(double newSampleRate) override;
 
 private:
-    // objects
+    // variables
+    float delayTime{500};
+    float sampleRate{getSampleRate()};
+    uint32_t patternType{0};
+    uint32_t randomChance{50};
+    uint32_t eucSteps{0}, eucPulse{0}, eucRota{0};
+    uint32_t nth{0}, nthRota{0};
 
+    // objects
+    PatternGenerator pattern;
     /**
         Set our plugin class as non-copyable and add a leak detector just in case.
     */
     DISTRHO_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(PatternCV)
-    float gain;
 };
 
 END_NAMESPACE_DISTRHO
