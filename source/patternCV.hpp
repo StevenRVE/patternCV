@@ -70,7 +70,7 @@ protected:
       Get the plugin version, in hexadecimal.
       @see d_version()
     */
-    uint32_t getVersion() const noexcept override { return d_version(0, 0, 0); }
+    uint32_t getVersion() const noexcept override { return d_version(1, 0, 0); }
 
     /**
       Get the plugin unique Id.
