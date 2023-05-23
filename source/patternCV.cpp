@@ -8,7 +8,7 @@ START_NAMESPACE_DISTRHO
     */
 PatternCV::PatternCV()
     : Plugin(PARAM_COUNT, 0, 0),
-    pattern(delayTime, getSampleRate())
+    pattern(time, getSampleRate())
 {
     pattern.generateEuclideanSequence(0,0,0);
     pattern.generateNthSequence(0,0);
@@ -82,7 +82,7 @@ void PatternCV::initParameter(uint32_t index, Parameter& parameter)
 
     const auto createPatternList = []
     {
-        ParameterEnumerationValue* const patternList = new ParameterEnumerationValue[3];
+        auto* const patternList = new ParameterEnumerationValue[3];
         patternList[0].label = "Random";
         patternList[0].value = 0;
         patternList[1].label = "Euclidean";
@@ -95,8 +95,8 @@ void PatternCV::initParameter(uint32_t index, Parameter& parameter)
     switch (index)
     {
         // MASTER PARAMS
-        case PARAM_DELAYTIME:
-            setParamProps(parameter, { .automatable=true, .integer=true, .min=100, .max=2000, .def=500, .name="Delay Time", .symbol="delayTime"});
+        case PARAM_TIME:
+            setParamProps(parameter, { .automatable=true, .integer=true, .min=100, .max=2000, .def=500, .name="Time", .symbol="time"});
             break;
         case PARAM_PATTERN_TYPE:
             setParamProps(parameter, { .automatable=true, .integer=true, .min=0, .max=2, .def=0, .name="Pattern Type", .symbol="patternType"});
@@ -143,8 +143,8 @@ float PatternCV::getParameterValue(uint32_t index) const
     switch (index)
     {
         // MASTER PARAMS
-        case PARAM_DELAYTIME:
-            return delayTime;
+        case PARAM_TIME:
+            return time;
             // Pattern
         case PARAM_PATTERN_TYPE:
             return patternType;
@@ -175,13 +175,13 @@ void PatternCV::setParameterValue(uint32_t index, float value)
 {
     switch (index)
     {
-    case PARAM_DELAYTIME:
-        this->delayTime = value;
-        pattern.calcDelayTimeSamples(delayTime);
+    case PARAM_TIME:
+        this->time = value;
+        pattern.calcDelayTimeSamples(time);
         break;
     case PARAM_PATTERN_TYPE:
         this->patternType = value;
-        std::cout << "setting patterType to: " << value << "\n";
+//        std::cout << "setting patterType to: " << value << "\n";
         pattern.setPattern(value);
         break;
     case PARAM_RANDOM_CHANCE:

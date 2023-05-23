@@ -23,7 +23,7 @@ class PatternCV : public Plugin
 {
 public:
     enum Parameters {
-        PARAM_DELAYTIME,
+        PARAM_TIME,
         PARAM_PATTERN_TYPE,
         PARAM_RANDOM_CHANCE,
         PARAM_EUC_STEPS,
@@ -139,7 +139,7 @@ protected:
 
 private:
     // variables
-    float delayTime{500};
+    float time{500};
     float sampleRate{getSampleRate()};
     uint32_t patternType{0};
     uint32_t randomChance{50};
