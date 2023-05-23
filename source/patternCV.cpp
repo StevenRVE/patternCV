@@ -26,18 +26,13 @@ PatternCV::PatternCV()
 
     void PatternCV::initAudioPort(bool input, uint32_t index, AudioPort& port)
     {
-        /**
-           Note that index is independent for input and output.
-           In other words, input port index starts from 0 and output port index also starts from 0.
-         */
-        if (input) { return; }
-        // Add more conditions here when increasing DISTRHO_PLUGIN_NUM_INPUTS.
-        else
-        {
-            switch (index)
-            {
-            case 0:
+        if (input == false)
+	{
+	    if (index == 0)
+    	    {
                 port.hints   = kAudioPortIsCV;
+                port.hints   = kCVPortHasPositiveUnipolarRange;
+                port.hints   = kCVPortHasScaledRange;
                 port.name    = "CV Output";
                 port.symbol  = "cv_out";
                 return;
