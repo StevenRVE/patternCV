@@ -12,7 +12,6 @@
 #include <iostream>
 
 // constants
-#define EXAMPLE         1
 
 START_NAMESPACE_DISTRHO
 
@@ -78,7 +77,7 @@ protected:
       This value is used by LADSPA, DSSI and VST plugin formats.
       @see d_cconst()
     */
-    int64_t getUniqueId() const noexcept override { return d_cconst('S', 'v', 'E', 'T'); }
+    int64_t getUniqueId() const noexcept override { return d_cconst('P', 'A', 'C', 'V'); }
 
     // -------------------------------------------------------------------
     // Init

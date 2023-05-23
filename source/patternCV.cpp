@@ -23,6 +23,7 @@ PatternCV::PatternCV()
        Initialize the audio port @a index.@n
        This function will be called once, shortly after the plugin is created.
      */
+
     void PatternCV::initAudioPort(bool input, uint32_t index, AudioPort& port)
     {
         /**
@@ -181,7 +182,6 @@ void PatternCV::setParameterValue(uint32_t index, float value)
         break;
     case PARAM_PATTERN_TYPE:
         this->patternType = value;
-//        std::cout << "setting patterType to: " << value << "\n";
         pattern.setPattern(value);
         break;
     case PARAM_RANDOM_CHANCE:

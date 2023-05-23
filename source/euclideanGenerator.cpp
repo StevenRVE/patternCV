@@ -93,16 +93,5 @@ void EuclideanGenerator::calcEuclideanSequence(uint32_t newSteps, uint32_t newPu
         // add element to sequence
         sequence[index] = y;
     }
-
-//    std::stringstream oss;
-//    oss << "[" << sequence.front();
-//    for (const uint32_t& elem : sequence) {
-//        if (&elem != &sequence.front()) {
-//            oss << ", " << elem;
-//        }
-//    }
-//    oss << "]";
-//
-//    std::cout << oss.str() << "\n";
 }
 
