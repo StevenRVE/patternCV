@@ -56,9 +56,9 @@ uint32_t PatternGenerator::generateRandomNumber()
     return randomNum;
 }
 
-void PatternGenerator::setRandomChance(uint32_t randomChance)
+void PatternGenerator::setRandomChance(uint32_t newRandomChance)
 {
-    this->randomChance = randomChance;
+    this->randomChance = newRandomChance;
 }
 
 void PatternGenerator::generateEuclideanSequence(uint32_t steps, uint32_t pulse, uint32_t rota) {
@@ -83,7 +83,7 @@ void PatternGenerator::tickCurrentStep()
 
 void PatternGenerator::wrapCurrentStep()
 {
-    std::cout << "patternLength: " << patternLength << "\n";
+//    std::cout << "patternLength: " << patternLength << "\n";
     if (patternLength >= 0 && currentStep >= patternLength)
     {
         currentStep = 0;
@@ -105,7 +105,7 @@ void PatternGenerator::wrapCurrentSample()
     }
 }
 
-bool PatternGenerator::getCurrentValue()
+bool PatternGenerator::getCurrentValue() const
 {
     return currentValue;
 }
@@ -115,20 +115,20 @@ void PatternGenerator::setCurrentValue()
     switch (patternNumber)
     {
         case PATTERN_TYPE_RANDOM:
-            std::cout << "CurrentStep: " << currentStep << " Setting current value to " << currentValue << " using pattern number the random algorithm\n";
+//            std::cout << "CurrentStep: " << currentStep << " Setting current value to " << currentValue << " using pattern number the random algorithm\n";
             if (generateRandomNumber() < randomChance)
             {
-                this->currentValue = 1;
+                this->currentValue = true;
             } else {
-                this->currentValue = 0;
+                this->currentValue = false;
             }
             break;
         case PATTERN_TYPE_EUCLIDEAN:
-            std::cout << "CurrentStep: " << currentStep << " Setting current value to " << currentValue << " using pattern number using the euclidean algorithm\n";
+//            std::cout << "CurrentStep: " << currentStep << " Setting current value to " << currentValue << " using pattern number using the euclidean algorithm\n";
             this->currentValue = euclideanGenerator.getSequenceValue(currentStep);
             break;
         case PATTERN_TYPE_NTH:
-            std::cout << "CurrentStep: " << currentStep << " Setting current value to " << currentValue << " using pattern number using the nth algorithm\n";
+//            std::cout << "CurrentStep: " << currentStep << " Setting current value to " << currentValue << " using pattern number using the nth algorithm\n";
             this->currentValue = nthGenerator.getSequenceValue(currentStep);
             break;
         default:

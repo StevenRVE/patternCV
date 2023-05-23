@@ -74,35 +74,35 @@ void EuclideanGenerator::setRotation (uint32_t value)
 /**
    function for calculating the euclidean sequence
 */
-void EuclideanGenerator::calcEuclideanSequence(uint32_t steps, uint32_t pulses, uint32_t rotation)
+void EuclideanGenerator::calcEuclideanSequence(uint32_t newSteps, uint32_t newPulses, uint32_t newRotation)
 {
-    if (steps == 0 || pulses == 0 || steps < pulses) { return; }
+    if (newSteps == 0 || newPulses == 0 || newSteps < newPulses) { return; }
 
     uint32_t prevItem = 0;
 
-    for (uint32_t i = 1; i <= steps; i++)
+    for (uint32_t i = 1; i <= newSteps; i++)
     {
-        uint32_t x = (i * pulses) / steps;
+        uint32_t x = (i * newPulses) / newSteps;
         uint32_t y = x - prevItem;
 
         prevItem = x;
 
-        uint32_t index = (i==steps)? 0 : i;
-        index = (index + rotation) % steps;
+        uint32_t index = (i == newSteps) ? 0 : i;
+        index = (index + newRotation) % newSteps;
 
         // add element to sequence
         sequence[index] = y;
     }
 
-    std::stringstream oss;
-    oss << "[" << sequence.front();
-    for (const uint32_t& elem : sequence) {
-        if (&elem != &sequence.front()) {
-            oss << ", " << elem;
-        }
-    }
-    oss << "]";
-
-    std::cout << oss.str() << "\n";
+//    std::stringstream oss;
+//    oss << "[" << sequence.front();
+//    for (const uint32_t& elem : sequence) {
+//        if (&elem != &sequence.front()) {
+//            oss << ", " << elem;
+//        }
+//    }
+//    oss << "]";
+//
+//    std::cout << oss.str() << "\n";
 }
 

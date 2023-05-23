@@ -34,7 +34,7 @@ public:
     void setPattern(uint8_t newPatternNumber);
 
     uint32_t generateRandomNumber();
-    void setRandomChance(uint32_t randomChance);
+    void setRandomChance(uint32_t newRandomChance);
 
     void generateEuclideanSequence(uint32_t step, uint32_t pulse, uint32_t rota);
     void generateNthSequence(uint32_t step, uint32_t rota);
@@ -45,7 +45,7 @@ public:
     void tickCurrentSample();
     void wrapCurrentSample();
 
-    bool getCurrentValue();
+    bool getCurrentValue() const;
     void setCurrentValue();
 
     void setPatternLength(uint32_t value);
@@ -57,7 +57,7 @@ private:
     uint8_t patternNumber{0};
     uint32_t patternLength{1};
     uint32_t currentStep{0};
-    bool currentValue{0};
+    bool currentValue{false};
     uint32_t currentSample{0};
     uint32_t delayTimeSamples{0};
     double sampleRate;
@@ -66,14 +66,14 @@ private:
     std::random_device randomDevice;
     std::mt19937 generator;
     std::uniform_int_distribution<> distribution; // distribution in range [0, 99]
-    uint32_t randomChance;
+    uint32_t randomChance{0};
 
     // euclidean
     EuclideanGenerator euclideanGenerator;
-    uint32_t step;
+    uint32_t step{0};
 
     // nth
-    uint32_t nth;
+    uint32_t nth{0};
     EuclideanGenerator nthGenerator;
 };
 

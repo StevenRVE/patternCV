@@ -36,7 +36,7 @@ public:
     // --- methods --- //
 
     // sequence
-    void calcEuclideanSequence(uint32_t steps, uint32_t pulses, uint32_t rotation);
+    void calcEuclideanSequence(uint32_t newSteps, uint32_t newPulses, uint32_t newRotation);
 
 protected:
     // parameters
